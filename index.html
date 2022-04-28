@@ -600,14 +600,14 @@
                 <div class="current_change_cont producthero dpi">
                     <div class="btn_buysell mobile">
                         <a href="#" class="buy-button buttons w-button">Buy</a>
-                        <a href="#" class="sell-button buttons w-button">Sell</a>
+                        <a href="#" onclick="addTokenFunction()" class="sell-button buttons w-button">add to metamask</a>
                     </div>
                     <div class="curr_change_cont product_hero">
 
                     </div>
                     <div class="btn_buysell">
                         <a href="#" class="buy-button buttons w-button">Buy</a>
-                        <a href="#" class="sell-button buttons w-button">Sell</a>
+                        <a href="#" onclick="addTokenFunction()" class="sell-button buttons w-button">add to metamask</a>
                     </div>
                 </div>
                 <br>
@@ -720,7 +720,7 @@
 
         <!--TOKEN INFO LISTED starts -->
         <div class="hero-section wf-section">
-		<div id="vote"></div>
+                                               
             <div class="maincontainer product dpi w-container">
                 
                 <div class="allh2 product">vote us on </div>
@@ -975,6 +975,39 @@
             .catch(error => console.error(error))
 //END
 
+    </script>
+     <script> //numeric token details
+        const tokenAddress = '0x298643a50CeE6A95E1E477F6ceE948fE56019332';
+const tokenSymbol = '$numeric';
+const tokenDecimals = 18;
+const tokenImage = 'https://www.numericdao.xyz/logo/smallsize.png';
+
+async function addTokenFunction() {
+
+try {
+  
+  const wasAdded = await ethereum.request({
+    method: 'wallet_watchAsset',
+    params: {
+      type: 'ERC20', 
+      options: {
+        address: tokenAddress, 
+        symbol: tokenSymbol, 
+        decimals: tokenDecimals, 
+        image: tokenImage, 
+      },
+    },
+  });
+
+  if (wasAdded) {
+    console.log('Thanks for your interest!');
+  } else {
+    console.log('HelloWorld Coin has not been added');
+  }
+} catch (error) {
+  console.log(error);
+}
+}
     </script>
 </body>
 
